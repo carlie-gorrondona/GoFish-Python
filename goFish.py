@@ -1,13 +1,15 @@
 #--------------------------------------------LIBRARIES & IMPORTS--------------------------------------------#
 import random
-
+import re
 
 #--------------------------------------------ARRAYS AND FUNCTIONS--------------------------------------------#
 
 userPlayerCards = []
 userPlayerBooks = []
+userPlayerPossibleBook = []
 computerPlayerCards = []
 computerPlayerBooks = []
+computerPlayerPossibleBook = []
 #stores all of the cards of a 52 card deck. The format is the first letter of a face card followed by the suit or the card number followed by the suit. 
 #EX: Queen of Diamonds = QD, King of Spades = KS, 3 of Clubs = 3C, 7 of Hearts = 7H, etc.
 cardDeck = [
@@ -59,7 +61,7 @@ def deal():
 
 
     print("These are your cards: \n")
-    print(userPlayerCards)
+    # print(TESTuserPlayerCards)
     print(computerPlayerCards)
 
 #This function determines player turn, gives the user game options to select from, and loops until cardDeck no longer contains cards. The user's turn is designated 
@@ -73,7 +75,7 @@ def play():
     while len(cardDeck) > 0:
         if counter % 2 == 0:
             print("Your cards: ")
-            print(userPlayerCards)
+            # print(TESTuserPlayerCards)
             print("Opponent's card count: ")
             print(len(computerPlayerCards))
 
@@ -97,7 +99,9 @@ def play():
                     break
                 case _:
                     return "Invalid Input"
-    
+        # else:
+        #     computerTurn()
+
         counter += 1
 
 #This function prints the user's cards, the opponent's card count, and asks them to enter a card they think the opponent has. Since suit doesn't matter, the user
@@ -123,9 +127,62 @@ def requestACard():
 
 def makeABook():
     bookCards = input("Enter the number or letter of the cards you'd like to book: ")
+    TESTcount = 0
+    TESTuserPlayerCards = ["4D", "4C", "4S", "4H", "KD", "KH", "KS", "KC"]
+    print(TESTuserPlayerCards)
 
-    # for card in userPlayerCards:
-    #     if bookCards in card 
+    for card in TESTuserPlayerCards:
+        # print(bookCards)
+        # print(card)
+        # print(bookCards in card and bookCards != None)
+        if bookCards in card and bookCards != None:
+            print(card)
+            # TESTuserPlayerCards.remove(card)
+            userPlayerPossibleBook.append(card)
+            print(userPlayerPossibleBook)
+            TESTcount += 1
+            print(TESTuserPlayerCards)    
+            
+
+    # if len(userPlayerPossibleBook) == 4:
+    #         userPlayerBooks.extend(userPlayerPossibleBook)
+    #         userPlayerPossibleBook.clear()
+    #         print(userPlayerBooks)
+    #         print(userPlayerPossibleBook)
+    #         print(TESTuserPlayerCards)
+    # else:
+    #     print("You do not have enough cards to make a book.")
+    #     for card in userPlayerPossibleBook:
+    #         userPlayerPossibleBook.remove(card)
+    #         userPlayerCards.append(card)  
+    #         print(userPlayerPossibleBook)
+    #         print(userPlayerBooks)
+
+def computerTurn():
+    numberCardValue = 2
+    aceCard = "A"
+    kingCard = "K"
+    queenCard = "Q"
+    jackCard = "J"
+    
+    while numberCardValue < 11:
+        for card in computerPlayerCards:
+            if str(numberCardValue) in card:
+                computerPlayerPossibleBook.append(card)
+                if len(computerPlayerPossibleBook == 4):
+                    computerPlayerBooks.append(computerPlayerPossibleBook)
+                    computerPlayerPossibleBook.clear()
+                    print(computerPlayerBooks)
+                    print(computerPlayerPossibleBook)
+                    print(computerPlayerCards)
+                else:
+                    continue
+            else:
+                numberCardValue += 1
+                computerPlayerPossibleBook.clear()
+
+   
+
 
 
 #--------------------------------------------MAIN CODE--------------------------------------------#
