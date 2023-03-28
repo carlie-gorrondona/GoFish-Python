@@ -99,8 +99,8 @@ def play():
                     break
                 case _:
                     return "Invalid Input"
-        # else:
-        #     computerTurn()
+        else:
+            computerTurn()
 
         counter += 1
 
@@ -169,7 +169,7 @@ def computerTurn():
         for card in computerPlayerCards:
             if str(numberCardValue) in card:
                 computerPlayerPossibleBook.append(card)
-                if len(computerPlayerPossibleBook == 4):
+                if len(computerPlayerPossibleBook) == 4:
                     computerPlayerBooks.append(computerPlayerPossibleBook)
                     computerPlayerPossibleBook.clear()
                     print(computerPlayerBooks)
@@ -177,14 +177,67 @@ def computerTurn():
                     print(computerPlayerCards)
                 else:
                     continue
-            else:
+            elif computerPlayerCards[len(computerPlayerCards) - 1] and len(computerPlayerPossibleBook) < 4:
                 numberCardValue += 1
                 computerPlayerPossibleBook.clear()
 
+    for card in computerPlayerCards:
+        if aceCard in card:
+            computerPlayerPossibleBook.append(card)
+            if len(computerPlayerPossibleBook) == 4:
+                computerPlayerBooks.append(computerPlayerPossibleBook)
+                computerPlayerPossibleBook.clear()
+                print(computerPlayerBooks)
+                print(computerPlayerPossibleBook)
+                print(computerPlayerCards)
+            else:
+                continue
+        elif computerPlayerCards[len(computerPlayerCards) - 1] and len(computerPlayerPossibleBook) < 4:
+            computerPlayerPossibleBook.clear()
+
+    for card in computerPlayerCards:
+        if kingCard in card:
+            computerPlayerPossibleBook.append(card)
+            if len(computerPlayerPossibleBook) == 4:
+                computerPlayerBooks.append(computerPlayerPossibleBook)
+                computerPlayerPossibleBook.clear()
+                print(computerPlayerBooks)
+                print(computerPlayerPossibleBook)
+                print(computerPlayerCards)
+            else:
+                continue
+        elif computerPlayerCards[len(computerPlayerCards) - 1] and len(computerPlayerPossibleBook) < 4:
+            computerPlayerPossibleBook.clear()
    
+    for card in computerPlayerCards:
+        if queenCard in card:
+            computerPlayerPossibleBook.append(card)
+            if len(computerPlayerPossibleBook) == 4:
+                computerPlayerBooks.append(computerPlayerPossibleBook)
+                computerPlayerPossibleBook.clear()
+                print(computerPlayerBooks)
+                print(computerPlayerPossibleBook)
+                print(computerPlayerCards)
+            else:
+                continue
+        elif computerPlayerCards[len(computerPlayerCards) - 1] and len(computerPlayerPossibleBook) < 4:
+            computerPlayerPossibleBook.clear()
 
+    for card in computerPlayerCards:
+        if jackCard in card:
+            computerPlayerPossibleBook.append(card)
+            if len(computerPlayerPossibleBook) == 4:
+                computerPlayerBooks.append(computerPlayerPossibleBook)
+                computerPlayerPossibleBook.clear()
+                print(computerPlayerBooks)
+                print(computerPlayerPossibleBook)
+                print(computerPlayerCards)
+            else:
+                continue
+        elif computerPlayerCards[len(computerPlayerCards) - 1] and len(computerPlayerPossibleBook) < 4:
+            computerPlayerPossibleBook.clear()
 
-
+    
 #--------------------------------------------MAIN CODE--------------------------------------------#
 
 print("****************** WELCOME TO GO FISH! ******************\n")
